@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Header.scss';
 import Link from '../Link';
@@ -110,6 +111,13 @@ class Header extends React.Component {
                 </div>
               </Popover>
               <div className={s.link + ' ' + s.clearfix}>
+                {this.props.loadingBar &&
+                  <div className={s.item}>
+                    <div className={s.loadingBar}>
+                      <Icon type="loading" />
+                    </div>
+                  </div>
+                }
                 <Popover placement="bottom" title={'通知'} content={noticeContent} trigger="click">
                   <div className={s.item}>
                     <Badge dot>
@@ -126,4 +134,12 @@ class Header extends React.Component {
   }
 }
 
-export default withStyles(s)(Header);
+const mapState = (state) => ({
+  loadingBar: state.common.loadingBar
+});
+
+const mapDispatch = {
+
+};
+
+export default withStyles(s)(connect(mapState, mapDispatch)(Header));

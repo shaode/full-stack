@@ -24,12 +24,12 @@ class Aside extends React.Component {
           </div>
         </div>
         <div className={s.subMenu}>
-          <Link to="/about" className={s.clearfix}>
+          <Link to="/privacy" className={s.clearfix}>
             <div className={s.subMenuIcon}>
               <Icon type="laptop"/>
             </div>
             <div className={s.subMenuText}>
-              <div className={s.subMenuTitle}>统计</div>
+              <div className={s.subMenuTitle}>隐私</div>
               <div className={s.subMenuDis}>fermentum</div>
             </div>
           </Link>
@@ -38,7 +38,7 @@ class Aside extends React.Component {
               <Icon type="laptop"/>
             </div>
             <div className={s.subMenuText}>
-              <div className={s.subMenuTitle}>统计</div>
+              <div className={s.subMenuTitle}>关于</div>
               <div className={s.subMenuDis}>fermentum</div>
             </div>
           </Link>
