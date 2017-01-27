@@ -1,0 +1,142 @@
+@import '../variables.scss';
+
+.clearfix:after,
+.clearfix:before {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  .navbarInner{
+    min-height: $header-h;
+    background-color: $color01;
+    border-width: 0 0 1px;
+    box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+  }
+}
+
+.container{
+  padding: 0;
+}
+
+.navbarLeft{
+  display: inline-block;
+  float: left;
+  padding-left: 20px;
+  width: $aside-w;
+  height: $header-h;
+  background: darken($color01,5%)
+}
+
+.brand{
+  padding: 10px 20px 0px;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  float: left;
+  display: block;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  color: #ffffff;
+}
+
+.navbarLeftBtn{
+  float: right;
+  color: #fff;
+  font-size: 16px;
+  height: $header-h;
+  line-height: $header-h;
+  padding: 0 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  &:focus{
+    outline: none;
+  }
+}
+
+.searchbox{
+  position: absolute;
+  top:11px;
+  left: $aside-w + 20px;
+  .inputSearch{
+    width: 220px;
+    height: 28px;
+    border: none;
+    border-radius: 30px;
+    padding: 0 10px 0 30px;
+    background: #fff;
+    &:focus{
+      outline: none;
+    }
+  }
+  .btnSearch{
+    position: absolute;
+    left: 8px;
+    top: 4px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    color: #7b7b7b;
+    &:focus{
+      outline: none;
+    }
+  }
+}
+
+.navbarRight{
+  float: right;
+  padding-right: 20px;
+  .user{
+    padding: 10px 20px;
+    float: right;
+    cursor: pointer;
+    &:hover{
+      background: darken($color01,5%)
+    }
+  }
+  .link{
+    float: right;
+    .item{
+      position: relative;
+      display: inline-block;
+      float: left;
+      color: #fff;
+      font-size: 16px;
+      height: $header-h;
+      line-height: $header-h;
+      padding: 0 10px;
+      cursor: pointer;
+      &:hover{
+        background: darken($color01,5%)
+      }
+    }
+  }
+}
+
+.avatar{
+  float: left;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.caretDown{
+  float: left;
+  margin-top: 6px;
+  color: #fff;
+}

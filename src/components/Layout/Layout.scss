@@ -1,0 +1,26 @@
+@import '../variables.scss';
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px
+}
+
+::-webkit-scrollbar-track {
+    background: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #999;
+}
+
+.wrap{
+  height: 100%;
+}
+
+.root {
+  margin-left: $aside-w;
+  margin-top: $header-h;
+  padding-top: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
