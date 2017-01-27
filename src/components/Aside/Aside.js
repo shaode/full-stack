@@ -186,7 +186,7 @@ class Aside extends React.Component {
               <Link to={item.subMenu[0].to}
                     onClick={this.onMainMenu.bind(item, item.key, item.subMenu[0].key)}
                     key={item.key}
-                    className={s.mainMenuItem + " " + (this.state.menuCurrent === item.key ? s.current : '')}
+                    className={s.mainMenuItem + ' ' + (this.state.menuCurrent === item.key ? s.current : '')}
               >
                 <Icon type={item.icon} />
                 <div className={s.mainMenuName}>{item.title}</div>
@@ -201,7 +201,7 @@ class Aside extends React.Component {
             )[0].subMenu.map((item, index) =>
               <Link onClick={this.onSubMenu.bind(item, item.key)}
                     key={item.key} to={item.to}
-                    className={s.clearfix + " " + (this.state.subMenuCurrent === item.key ? s.current : '')}
+                    className={s.clearfix + ' ' + (this.state.subMenuCurrent === item.key ? s.current : '')}
               >
                 <div className={s.subMenuIcon}>
                   <Icon type={item.icon}/>
