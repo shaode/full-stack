@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
+import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Layout.scss';
 import antd from '!!isomorphic-style!css?modules=false!antd/dist/antd.min.css';
-
 import Header from '../Header';
 import Aside from '../Aside';
 import Breadcrumb from '../Breadcrumb';
@@ -15,7 +15,7 @@ class Layout extends React.Component {
 
   render() {
     return (
-      <div className={s.wrap}>
+      <div className={s.wrap + ' ' + (this.props.menuToggle ? s.menuClose : '')}>
         <Header/>
         <Aside/>
         <div className={s.root}>
@@ -28,4 +28,12 @@ class Layout extends React.Component {
   }
 }
 
-export default withStyles(s, antd)(Layout);
+const mapState = (state) => ({
+  menuToggle: state.common.menuToggle
+});
+
+const mapDispatch = {
+
+};
+
+export default withStyles(s, antd)(connect(mapState, mapDispatch)(Layout));
