@@ -8,10 +8,25 @@ import Aside from '../Aside';
 import Breadcrumb from '../Breadcrumb';
 import Footer from '../Footer';
 
+import history from '../../core/history';
+import { mainMenu } from '../Aside';
+import { subMenuKeyFn } from '../../actions/common';
+
 class Layout extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired
   };
+
+  componentDidMount() {
+    //复原菜单记录
+    let self = this
+    mainMenu.forEach((a, b) => a.subMenu.forEach((c, d) => {
+      if (c.to === history.location.pathname) {
+        self.props.subMenuKeyFn([a.key, c.key])
+        return
+      }
+    }))
+  }
 
   render() {
     return (
@@ -33,7 +48,7 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = {
-
+  subMenuKeyFn
 };
 
 export default withStyles(s, antd)(connect(mapState, mapDispatch)(Layout));

@@ -37,7 +37,7 @@ class Link extends React.Component {
       this.props.loadingBarFn(true)
 
       //监听所有菜单链接,并分发 key
-      let _key, self = this
+      let self = this
       mainMenu.forEach((a, b) => a.subMenu.forEach((c, d) => {
         if (c.to === this.props.to) {
           self.props.subMenuKeyFn([a.key, c.key])
