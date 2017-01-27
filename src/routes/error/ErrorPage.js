@@ -1,20 +1,17 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './ErrorPage.css';
+import { loadingBarFn } from '../../actions/common';
 
 class ErrorPage extends React.Component {
   static propTypes = {
     error: PropTypes.object.isRequired,
   };
+
+  componentDidMount() {
+
+  }
 
   render() {
     if (process.env.NODE_ENV !== 'production') {
@@ -37,5 +34,13 @@ class ErrorPage extends React.Component {
   }
 }
 
+const mapState = (state) => ({
+
+});
+
+const mapDispatch = {
+  loadingBarFn
+};
+
 export { ErrorPage as ErrorPageWithoutStyle };
-export default withStyles(s)(ErrorPage);
+export default withStyles(s)(connect(mapState, mapDispatch)(ErrorPage));

@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-import { LOADINGBAR, MENUTOGGLE } from '../constants';
+import { LOADINGBAR, MENUTOGGLE, SUBMENUKEY } from '../constants';
 
 export function loadingBarFn(play) {
   return {
@@ -12,5 +12,12 @@ export function loadingBarFn(play) {
 export function menuToggleFn() {
   return {
     type: MENUTOGGLE
+  };
+}
+
+export function subMenuKeyFn(key) {
+  return {
+    type: SUBMENUKEY,
+    key
   };
 }

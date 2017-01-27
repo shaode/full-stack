@@ -4,9 +4,9 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Aside.scss';
 import Link from '../Link';
 import { Menu, Icon, Badge } from 'antd';
-import { menuToggleFn } from '../../actions/common';
+import { menuToggleFn, subMenuKeyFn } from '../../actions/common';
 
-const mainMenu = [
+export const mainMenu = [
   {
     key: 'mainMenu01',
     title: '菜单01',
@@ -28,14 +28,14 @@ const mainMenu = [
       },
       {
         key: 'subMenu1-3',
-        to:'/privacy',
+        to:'/1',
         title: '1-3',
         des: 'subMenu01',
         icon: 'pie-chart',
       },
       {
         key: 'subMenu1-4',
-        to:'/privacy',
+        to:'/2',
         title: '1-4',
         des: 'subMenu01',
         icon: 'pie-chart',
@@ -49,28 +49,28 @@ const mainMenu = [
     subMenu: [
       {
         key: 'subMenu2-1',
-        to:'/about',
+        to:'/3',
         title: '2-1',
         des: 'subMenu01',
         icon: 'pie-chart',
       },
       {
         key: 'subMenu2-2',
-        to:'/about',
+        to:'/4',
         title: '2-2',
         des: 'subMenu01',
         icon: 'pie-chart',
       },
       {
         key: 'subMenu2-3',
-        to:'/privacy',
+        to:'/5',
         title: '2-3',
         des: 'subMenu01',
         icon: 'pie-chart',
       },
       {
         key: 'subMenu2-4',
-        to:'/privacy',
+        to:'/6',
         title: '2-4',
         des: 'subMenu01',
         icon: 'pie-chart',
@@ -84,28 +84,28 @@ const mainMenu = [
     subMenu: [
       {
         key: 'subMenu3-1',
-        to:'/privacy',
+        to:'/7',
         title: '3-1',
         des: 'subMenu01',
         icon: 'pie-chart',
       },
       {
         key: 'subMenu3-2',
-        to:'/about',
+        to:'/8',
         title: '3-2',
         des: 'subMenu01',
         icon: 'pie-chart',
       },
       {
         key: 'subMenu3-3',
-        to:'/privacy',
+        to:'/9',
         title: '3-3',
         des: 'subMenu01',
         icon: 'pie-chart',
       },
       {
         key: 'subMenu3-4',
-        to:'/privacy',
+        to:'/10',
         title: '3-4',
         des: 'subMenu01',
         icon: 'pie-chart',
@@ -119,28 +119,28 @@ const mainMenu = [
     subMenu: [
       {
         key: 'subMenu4-1',
-        to:'/privacy',
+        to:'/11',
         title: '4-1',
         des: 'subMenu01',
         icon: 'pie-chart',
       },
       {
         key: 'subMenu4-2',
-        to:'/about',
+        to:'/12',
         title: '4-2',
         des: 'subMenu01',
         icon: 'pie-chart',
       },
       {
         key: 'subMenu4-3',
-        to:'/privacy',
+        to:'/13',
         title: '4-3',
         des: 'subMenu01',
         icon: 'pie-chart',
       },
       {
         key: 'subMenu4-4',
-        to:'/privacy',
+        to:'/14',
         title: '4-4',
         des: 'subMenu01',
         icon: 'pie-chart',
@@ -153,21 +153,8 @@ class Aside extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      menuCurrent: mainMenu[0].key,
-      subMenuCurrent: mainMenu[0].subMenu[0].key
-    };
-    this.onMainMenu = this.onMainMenu.bind(this);
-    this.onSubMenu = this.onSubMenu.bind(this);
+    this.state = {};
     this.onMenuToggle = this.onMenuToggle.bind(this);
-  }
-
-  onMainMenu(key, sub) {
-    this.setState({menuCurrent: key, subMenuCurrent: sub});
-  }
-
-  onSubMenu(key) {
-    this.setState({subMenuCurrent: key});
   }
 
   onMenuToggle() {
@@ -184,9 +171,8 @@ class Aside extends React.Component {
           {
             mainMenu.map((item, index) =>
               <Link to={item.subMenu[0].to}
-                    onClick={this.onMainMenu.bind(item, item.key, item.subMenu[0].key)}
                     key={item.key}
-                    className={s.mainMenuItem + ' ' + (this.state.menuCurrent === item.key ? s.current : '')}
+                    className={s.mainMenuItem + ' ' + (this.props.subMenuKey[0] === item.key ? s.current : '')}
               >
                 <Icon type={item.icon} />
                 <div className={s.mainMenuName}>{item.title}</div>
@@ -197,11 +183,11 @@ class Aside extends React.Component {
         <div className={s.subMenu}>
           {
             mainMenu.filter((item, index) =>
-              item.key === this.state.menuCurrent
+              item.key === this.props.subMenuKey[0]
             )[0].subMenu.map((item, index) =>
-              <Link onClick={this.onSubMenu.bind(item, item.key)}
-                    key={item.key} to={item.to}
-                    className={s.clearfix + ' ' + (this.state.subMenuCurrent === item.key ? s.current : '')}
+              <Link key={item.key}
+                    to={item.to}
+                    className={s.clearfix + ' ' + (this.props.subMenuKey[1] === item.key ? s.current : '')}
               >
                 <div className={s.subMenuIcon}>
                   <Icon type={item.icon}/>
@@ -220,11 +206,13 @@ class Aside extends React.Component {
 }
 
 const mapState = (state) => ({
-  menuToggle: state.common.menuToggle
+  menuToggle: state.common.menuToggle,
+  subMenuKey: state.common.subMenuKey
 });
 
 const mapDispatch = {
-  menuToggleFn
+  menuToggleFn,
+  subMenuKeyFn
 };
 
 export default withStyles(s)(connect(mapState, mapDispatch)(Aside));
